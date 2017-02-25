@@ -1,5 +1,8 @@
 <?php
 
+    /*
+    Gets information about the system (Hostname,OS,CPU,Memory.HDD,Network etc.)
+    */
 
     function getSystemInfo(){
         //cpu stat
@@ -15,8 +18,8 @@
         $intervalTotal = intval($total - $prevTotal);
         $stat['cpu'] =  intval(100 * (($intervalTotal - ($idle - $prevIdle)) / $intervalTotal));
         $cpu_result = shell_exec("cat /proc/cpuinfo | grep model\ name");
-        $stat['cpu_model'] = strstr($cpu_result, "\n", true);
-        $stat['cpu_model'] = str_replace("model name    : ", "", $stat['cpu_model']);
+        $cpu_result_text = strstr($cpu_result, "\n", true);
+        $stat['cpu_model'] = str_replace("model name	: ", "", $cpu_result_text);
         //memory stat
         $stat['mem_percent'] = round(shell_exec("free | grep Mem | awk '{print $3/$2 * 100.0}'"), 2);
         $mem_result = shell_exec("cat /proc/meminfo | grep MemTotal");
@@ -32,19 +35,26 @@
         //network stat
         $stat['network_rx'] = round(trim(file_get_contents("/sys/class/net/eth0/statistics/rx_bytes")) / 1024/ 1024/ 1024, 2);
         $stat['network_tx'] = round(trim(file_get_contents("/sys/class/net/eth0/statistics/tx_bytes")) / 1024/ 1024/ 1024, 2);
+        //OS stat
+        $stat['hostname'] = file_get_contents("/etc/hostname");
+        $os_info = shell_exec("cat /etc/os-release | grep 'NAME' | head -1");
+        $stat['os'] = explode('=',$os_info)[1]; 
+        $uptime_info = shell_exec("uptime -p");
+        $stat['uptime'] = str_replace('up ','',$uptime_info);
+
         //output headers
-        header('Content-type: text/json');
-        header('Content-type: application/json');
+        //header('Content-type: text/json');
+        //header('Content-type: application/json');
         //output data by json
 
 
-        $test =  "{\"cpu\": " . $stat['cpu'] . ", \"cpu_model\": \"" . $stat['cpu_model'] . "\"" . //cpu stats
+        $sysinfo =  "{\"cpu\": " . $stat['cpu'] . ", \"cpu_model\": \"" . $stat['cpu_model'] . "\"" . //cpu stats
         ", \"mem_percent\": " . $stat['mem_percent'] . ", \"mem_total\":" . $stat['mem_total'] . ", \"mem_used\":" . $stat['mem_used'] . ", \"mem_free\":" . $stat['mem_free'] . //mem stats
         ", \"hdd_free\":" . $stat['hdd_free'] . ", \"hdd_total\":" . $stat['hdd_total'] . ", \"hdd_used\":" . $stat['hdd_used'] . ", \"hdd_percent\":" . $stat['hdd_percent'] . ", " . //hdd stats
-        "\"network_rx\":" . $stat['network_rx'] . ", \"network_tx\":" . $stat['network_tx'] . //network stats
-        "}";
+        "\"network_rx\":" . $stat['network_rx'] . ", \"network_tx\":" . $stat['network_tx'] . ", " . //network stats
+        "\"hostname\":" . "\"" . $stat['hostname'] . "\"" . ", \"os\":" .  $stat['os'] . ", \"uptime\":" . "\"" . $stat['uptime'] . "\"}";
 
-        return json_decode($test);
+        return ($sysinfo);
     }   
 
 
