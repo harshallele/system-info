@@ -1,0 +1,25 @@
+.header-main{
+    font-size: 200%;
+    font-weight: bold;
+}
+
+.uptime-text{
+    font-size: 120%;
+}
+
+.os-text{
+    font-size: 120%;
+}
+
+.cpu-header , .mem-header , .hdd-header , .net-header{
+    font-size: 150%;
+    font-weight: bold;
+}
+
+#hlele-bar-cpu , #hlele-bar-mem , #hlele-bar-hdd {
+    width: 100%;
+}
+
+.cpu-model , .mem-val , .hdd-val , .net-rx , .net-tx{
+    font-size: 120%;
+}
