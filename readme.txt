@@ -1,0 +1,1 @@
+System Info is a simple dashboard widget that displays system information such as CPU usage,memory usage,network usage etc.
