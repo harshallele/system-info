@@ -1,6 +1,6 @@
 === Plugin Name ===
 Contributors: harshallele
-Tags: system information,system dashboard
+Tags: system information,system dashboard,widget
 Requires at least: 4.7
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl.html
