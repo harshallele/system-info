@@ -6,6 +6,11 @@ var systemInfo = null;
 //progress bar elements
 var bar_cpu,bar_mem,bar_hdd;
 
+/* 
+
+*/
+
+
 jq(window).load(function(){
     //set the system info once, repeat every 15 secs
     getAndSetSystemInfo();
@@ -15,32 +20,32 @@ jq(window).load(function(){
 
     //iniitalise progress bars
     bar_cpu = new ProgressBar.Line('#hlele-bar-cpu', {
-        strokeWidth: 2,
+        strokeWidth: 1.5,
         easing: 'easeOut',
         duration: 500,
-        color: '#FFEA82',
-        trailColor: 'lightgrey',
+        color: '#B71C1C',
+        trailColor: '#FFCDD2',
         trailWidth: 1,
         svgStyle: {width: '100%', height: '50%'},
     });
 
     bar_mem = new ProgressBar.Line('#hlele-bar-mem', {
-        strokeWidth: 2,
+        strokeWidth: 1.5,
         easing: 'easeOut',
         duration: 500,
-        color: '#FFEA82',
-        trailColor: 'lightgrey',
+        color: '#B71C1C',
+        trailColor: '#FFCDD2',
         trailWidth: 1,
         svgStyle: {width: '100%', height: '50%'},
 
     });
 
     bar_hdd = new ProgressBar.Line('#hlele-bar-hdd', {
-        strokeWidth: 2,
+        strokeWidth: 1.5,
         easing: 'easeOut',
         duration: 500,
-        color: '#FFEA82',
-        trailColor: 'lightgrey',
+        color: '#B71C1C',
+        trailColor: '#FFCDD2',
         trailWidth: 1,
         svgStyle: {width: '100%', height: '50%'},
 

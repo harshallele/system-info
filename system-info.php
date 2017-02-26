@@ -3,7 +3,9 @@
 /*
 Plugin Name: System Info
 Author: Harshal Lele
-
+Version: 1.0
+License: GPL3
+License URI: https://www.gnu.org/licenses/gpl.html
 
 
 */
@@ -26,6 +28,7 @@ Author: Harshal Lele
         
         wp_enqueue_script('hlele_progressbar_script',plugins_url('/js/progressbar.min.js',__FILE__));
         
+        
 
         wp_add_dashboard_widget('hlele_sysinfo_dashboard','System Information','hlele_setSysInfo');
     }
@@ -41,24 +44,24 @@ Author: Harshal Lele
         '
             <div class="header">'
                 //OS name,hostname, and uptime
-                . '<div class="header-main">' . ($infoObj->hostname) . '</div>' . '<small class="os-text">' . ($infoObj->os) . '</small>' . '<div class="uptime-text" id="uptime-text">Uptime:'. ($infoObj->uptime) .'</div>'
+                . '<div class="header-main hlele-color-primary">' . ($infoObj->hostname) . '</div>' . '<small class="os-text hlele-color-primary-light">' . ($infoObj->os) . '</small>' . '<div class="uptime-text hlele-color-primary" id="uptime-text">Uptime:'. ($infoObj->uptime) .'</div>'
                 . '<hr>' 
                 //CPU model 
-                . '<div class="cpu-header">CPU</div><small class="cpu-model">' . ($infoObj->cpu_model) . '</small>'
+                . '<div class="cpu-header hlele-color-primary">CPU</div><small class="cpu-model hlele-color-primary-light">' . ($infoObj->cpu_model) . '</small>'
                 //progressbar of CPU percentage
                 . '<div id="hlele-bar-cpu"></div>'
                 //Memory(used/total)
-                . '<div class="mem-header">Memory</div><small class="mem-val" id="mem-val">' . ($infoObj->mem_used) . 'GB/' . ($infoObj->mem_total) . 'GB' . '</small>'
+                . '<div class="mem-header hlele-color-primary">Memory</div><small class="mem-val hlele-color-primary-light" id="mem-val">' . ($infoObj->mem_used) . 'GB/' . ($infoObj->mem_total) . 'GB' . '</small>'
                 //progressbar for memory usage
                 . '<div id="hlele-bar-mem"></div>'
                 //HDD(used/total)
-                . '<div class="hdd-header">Storage</div><small class="hdd-val" id="hdd-val">' . ($infoObj->hdd_used) . 'GB/' . ($infoObj->hdd_total) . 'GB' . '</small>'
+                . '<div class="hdd-header hlele-color-primary">Storage</div><small class="hdd-val hlele-color-primary-light" id="hdd-val">' . ($infoObj->hdd_used) . 'GB/' . ($infoObj->hdd_total) . 'GB' . '</small>'
                 //progressbar for HDD
                 . '<div id="hlele-bar-hdd"></div>'
                 //Network upload and download
-                . '<div class="net-header">Network</div>'
-                . '<div class="net-rx">Download: <span class="net-rx-val" id="net-rx-val">' . ($infoObj->network_rx) . 'GB</span></div>'
-                . '<div class="net-tx">Upload:   <span class="net-tx-val" id="net-tx-val">' . ($infoObj->network_tx) . 'GB</span></div>'
+                . '<div class="net-header hlele-color-primary">Network</div>'
+                . '<div class="net-rx hlele-color-primary-light">Download: <span class="net-rx-val" id="net-rx-val">' . ($infoObj->network_rx) . 'GB</span></div>'
+                . '<div class="net-tx hlele-color-primary-light">Upload:   <span class="net-tx-val" id="net-tx-val">' . ($infoObj->network_tx) . 'GB</span></div>'
             .'</div>'
             
         ;
